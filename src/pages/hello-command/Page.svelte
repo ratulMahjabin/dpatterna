@@ -1,13 +1,30 @@
 <script>
-  let commands = {
-    on: "on",
-    red1: "red/1",
-  };
+  import { orderHandler } from './command-provider'
 
-  let src = `./images/light-receiver/${commands["on"]}.png`;
+  let commands = {
+    on: 'on',
+    red0: 'red/0',
+    red1: 'red/1',
+    red2: 'red/2',
+    red3: 'red/3',
+    off: 'off',
+  }
+
+  let cut
+  let parameter = 'off'
+
+  function changeCommand(str) {
+    parameter = orderHandler(str)
+    console.log(parameter)
+    src = `./images/light-receiver/${commands[parameter]}.png`
+  }
+
+  let src = `./images/light-receiver/${commands[parameter]}.png`
+  console.log(src)
 
 </script>
 
+<!-- svelte-ignore non-top-level-reactive-declaration -->
 <style>
   .btn-group button {
     padding: 10px 24px;
@@ -53,16 +70,38 @@
 
 </style>
 
+<!-- svelte-ignore non-top-level-reactive-declaration -->
+<!-- svelte-ignore non-top-level-reactive-declaration -->
 <h1>Command buttons</h1>
 
 <div class="btn-group">
-  <button class="on">On</button>
-  <button class="off">Off</button>
+  <button
+    class="on"
+    on:click={() => {
+      changeCommand('on')
+    }}>On</button>
+  <button
+    class="off"
+    on:click={() => {
+      changeCommand('off')
+    }}>Off</button>
 
-  <button class="increase-lum">+</button>
-  <button class="decrease-lum">-</button>
+  <button
+    class="increase-lum"
+    on:click={() => {
+      changeCommand('increase')
+    }}>+</button>
+  <button
+    class="decrease-lum"
+    on:click={() => {
+      changeCommand('decrease')
+    }}>-</button>
 
-  <button class="red-light">Red</button>
+  <button
+    class="red-light"
+    on:click={() => {
+      changeCommand('red')
+    }}>Red</button>
 </div>
 
 <div class="portrait"><img {src} alt={src} /></div>

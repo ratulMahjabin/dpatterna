@@ -24,6 +24,7 @@ export class LightReceiver {
 // redlight receiver
 export class RedLightReceiver {
   public on(): string {
+    value = 0
     return `red${value}`
   }
 
