@@ -68,7 +68,7 @@ describe('Command light', () => {
   })
 
   test('Red light decrease', () => {
-    let expectation = 'red0'
+    let expectation = 'red2'
     let reality = commandOnLight(
       new RedLightDecreaseLuminosityCommand(new RedLightReceiver())
     )
